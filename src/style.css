@@ -1,3 +1,87 @@
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300&display=swap");
+
+/* CSS Reset */
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Set core body defaults */
 body {
-  background-color: bisque;
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Main Styles */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Fira Sans", sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(50, 50, 93, 0.40) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.2) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  border-radius: 10px;
+  min-width: 500px;
+  width: 700px;
+  max-width: 50vw;
+  overflow: hidden;
 }
