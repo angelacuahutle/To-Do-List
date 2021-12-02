@@ -1,6 +1,7 @@
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
+const button = document.querySelector('button')
 const listArr = [{
     index: 0,
     duties: 'Finish repo',
@@ -22,11 +23,10 @@ function displaylistArr() {
   listArr.forEach((itemElement) => { 
     const li = document.createElement('li')
     li.innerHTML = `<li class= "list-group-item">${itemElement.duties}</li>`
-    li.appendChild
+    button.parentElement.insertBefore(li,button);
   })
 }
 
 window.addEventListener('DOMContentLoaded', () => {
 displaylistArr();
 });
-console.log(listArr)
