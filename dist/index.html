@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To-Do List App</title>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script defer src="/index.js"></script></head>
+
 <body>
+
   <body>
-    <div class="container">
-      <h2>My List!</h2>
-      <div class="add-input">
-        <input class="list-input" type="text" placeholder="Add task...">
-       <!-- <button type="button" class="btn-add">
-          <i class="fas fa-sign-in-alt"></i>
-        </button>-->
-      </div>
-      <ul class="list-group">
-      </ul>
-      <button type="button" class="btn-completed">Clear completed tasks</button>
-    </div>
+    <section>
+      <div class="container">
+        <ul id="completed-list">
+          <li class="top-list-item">
+            <h2>Today's Todo's!</h2>
+            <span class="material-icons"> sync </span>
+          <li class="top-list-item">
+            <div class="flex items">
+              <input placeholder="Add a Task" type="text">
+            </div>
+            <hr>
+          </li>
+          <li><button type="button">Clear All Done's</button></li>
+        </ul>
+    </section>
   </body>
-  
-  </html>
+
+</html>
