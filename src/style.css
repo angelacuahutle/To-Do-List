@@ -73,7 +73,7 @@ body {
   font-family: "Fira Sans", sans-serif;
 }
 
-. h2 {
+  h2 {
   padding: 0.5em 0 0.25em 0.75em;
   font-weight: 600;
   border-bottom: 1px solid rgba(128, 128, 128, 0.425);
@@ -93,9 +93,3 @@ body {
   overflow: hidden;
 }
 
-.add-imput .format-container{
-  display: flex;
-  padding-left: 1em;
-  padding-right: 0.75em;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.425);
-}

@@ -1,4 +1,5 @@
 import './style.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const listArr = [{
     index: 0,
@@ -20,9 +21,12 @@ const listArr = [{
 function displaylistArr() {
   listArr.forEach((itemElement) => { 
     const li = document.createElement('li')
-    li.innerHTML = `<li>`
-
+    li.innerHTML = `<li class= "list-group-item">${itemElement.duties}</li>`
+    li.appendChild
   })
 }
 
+window.addEventListener('DOMContentLoaded', () => {
+displaylistArr();
+});
 console.log(listArr)
