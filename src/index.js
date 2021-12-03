@@ -31,6 +31,27 @@ function displaylistArr() {
   });
 }
 
+function displayTodos() {
+  toDos.sort((a, b) => (a.index > b.index ? 1 : -1));
+  toDos.forEach((element) => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <div class="flex">
+        <div>
+        <input type="checkbox" class="checkbox"
+        ${element.completed ? 'checked' : ''}>
+          <span>${element.description}</span>
+        </div>
+        <span class="material-icons">
+            more_vert
+        </span>
+      </div>
+      <hr>`;
+    button.parentElement.insertBefore(li, button);
+  });
+}
+
+
 window.addEventListener('DOMContentLoaded', () => {
   displaylistArr();
 });
