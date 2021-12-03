@@ -4,7 +4,7 @@
 
 > In this project, I build a simple HTML list of To Do tasks. The list will be styled and will be built using webpack and served by a webpack dev server.
 
-![screenshot](./app_screenshot.png)
+![screenshot](./list.png)
 
 Additional description about the project and its features.
 
@@ -23,7 +23,7 @@ Additional description about the project and its features.
 
 **Setup Webpack locally and start coding!Use the following tutorial: https://webpack.js.org/guides/getting-started/**
 
-- Set up a new project with webpack that is based on the webpack exercise you have already completed.
+- Set up a new project with webpack
 - Create an index.html file and write your HTML markup here. Create an empty To Do List placeholder (<div> or <ul> element). The index.html file must be set as a template using the HTML Webpack Plugin.
 - Create an index.js file and set an array of some simple to do tasks (array of objects). Each task object should contain three keys:
 description [string].
@@ -36,10 +36,6 @@ index: [number].
 ### Prerequisites
 
 ### Setup Webpack
-
-### Deployment
-
-### Run tests
 
 
 ## Authors
