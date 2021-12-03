@@ -3,23 +3,19 @@ import 'bootstrap/dist/css/bootstrap.css';
 import update from './track';
 
 const button = document.querySelector('button');
-let listArr = [{
-  index: 0,
-  duties: 'Finish repo',
-  completed: false,
-},
-{
-  index: 1,
-  duties: 'Study session',
-  completed: false,
-},
-{
-  index: 2,
-  duties: 'Meet partner',
-  completed: true,
-},
-];
 
+class List {
+  constructor(description, completed, index) {
+    this.description = description;
+    this.completed = completed;
+    this.index = index;
+  }
+}
+
+let listArr = [
+  new item('Study lesson', true, 0),
+  new item('Feeding the cat', false, 1),
+];
 function displaylistArr() {
   listArr.sort((a, b) => (a.index > b.index ? 1 : -1));
   listArr.forEach((itemElement) => {
