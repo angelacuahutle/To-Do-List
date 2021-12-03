@@ -18,9 +18,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-
-  },
+  "bugs": {},
   "homepage": "https://github.com/angelacuahutle/To-Do-List#readme",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
