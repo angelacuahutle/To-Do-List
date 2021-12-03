@@ -55,8 +55,11 @@ function storeTodosLocally() {
   localStorage.setItem('toDos', JSON.stringify(toDos));
 }
 
-
-
 window.addEventListener('DOMContentLoaded', () => {
-  displaylistArr();
+  const oldTodos = JSON.parse(localStorage.getItem('toDos'));
+  if (oldTodos) {
+    toDos = oldTodos;
+  }
+  displayTodos();
+  addEventsToCheckboxes();
 });
