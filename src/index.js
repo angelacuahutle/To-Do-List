@@ -1,6 +1,7 @@
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import update from './track';
+import { addItem, updateItemStatus, removeItem } from './ItemsDriver';
 
 const button = document.querySelector('button');
 
@@ -12,10 +13,8 @@ class List {
   }
 }
 
-let listArr = [
-  new item('Study lesson', true, 0),
-  new item('Feeding the cat', false, 1),
-];
+let listArr = [];
+
 function displaylistArr() {
   listArr.sort((a, b) => (a.index > b.index ? 1 : -1));
   listArr.forEach((itemElement) => {
