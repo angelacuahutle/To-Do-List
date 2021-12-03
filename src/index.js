@@ -51,6 +51,11 @@ function displayTodos() {
   });
 }
 
+function storeTodosLocally() {
+  localStorage.setItem('toDos', JSON.stringify(toDos));
+}
+
+
 
 window.addEventListener('DOMContentLoaded', () => {
   displaylistArr();
