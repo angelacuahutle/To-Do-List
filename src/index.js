@@ -22,7 +22,11 @@ const listArr = [{
 function displaylistArr() {
   listArr.forEach((itemElement) => {
     const li = document.createElement('li');
-    li.innerHTML = `<li class= "list-group-item">${itemElement.duties}</li>`;
+    li.innerHTML = `<div class="flex">
+<div><input type="checkbox"><span class="margin-left">${itemElement.duties}</span></div><span class="material-icons">more_vert
+</span>
+</div>
+<hr>`;
     button.parentElement.insertBefore(li, button);
   });
 }
