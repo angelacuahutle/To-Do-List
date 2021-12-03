@@ -1,21 +1,36 @@
-import printMe from './print.js';
 import './style.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
-function component() {
-  
-  const element = document.createElement('div');
-  const btn = document.createElement('button');
+const button = document.querySelector('button');
+const listArr = [{
+  index: 0,
+  duties: 'Finish repo',
+  completed: false,
+},
+{
+  index: 1,
+  duties: 'Study session',
+  completed: false,
+},
+{
+  index: 2,
+  duties: 'Meet partner',
+  completed: true,
+},
+];
 
-  // Lodash, currently included via a script, is required for this line to work
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  element.classList.add('hello');
-
-  btn.innerHTML = 'Click me and check the console!';
-  btn.onclick = printMe;
-
-  element.appendChild(btn);
-
-  return element;
+function displaylistArr() {
+  listArr.forEach((itemElement) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<div class="flex">
+<div><input type="checkbox"><span class="margin-left">${itemElement.duties}</span></div><span class="material-icons">more_vert
+</span>
+</div>
+<hr>`;
+    button.parentElement.insertBefore(li, button);
+  });
 }
 
-document.body.appendChild(component());
+window.addEventListener('DOMContentLoaded', () => {
+  displaylistArr();
+});
