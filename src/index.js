@@ -1,8 +1,9 @@
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import update from './track';
 
 const button = document.querySelector('button');
-const listArr = [{
+let listArr = [{
   index: 0,
   duties: 'Finish repo',
   completed: false,
@@ -20,27 +21,15 @@ const listArr = [{
 ];
 
 function displaylistArr() {
+  listArr.sort((a, b) => (a.index > b.index ? 1 : -1));
   listArr.forEach((itemElement) => {
-    const li = document.createElement('li');
-    li.innerHTML = `<div class="flex">
-<div><input type="checkbox"><span class="margin-left">${itemElement.duties}</span></div><span class="material-icons">more_vert
-</span>
-</div>
-<hr>`;
-    button.parentElement.insertBefore(li, button);
-  });
-}
-
-function displayTodos() {
-  toDos.sort((a, b) => (a.index > b.index ? 1 : -1));
-  toDos.forEach((element) => {
     const li = document.createElement('li');
     li.innerHTML = `
       <div class="flex">
         <div>
         <input type="checkbox" class="checkbox"
-        ${element.completed ? 'checked' : ''}>
-          <span>${element.description}</span>
+        ${itemElement.completed ? 'checked' : ''}>
+          <span>${itemElement.duties}</span>
         </div>
         <span class="material-icons">
             more_vert
@@ -52,14 +41,24 @@ function displayTodos() {
 }
 
 function storeTodosLocally() {
-  localStorage.setItem('toDos', JSON.stringify(toDos));
+  localStorage.setItem('listArr', JSON.stringify(listArr));
+}
+
+function addEventsToCheckboxes() {
+  const checkboxes = document.querySelectorAll('.checkbox');
+  checkboxes.forEach((checkbox, index) => {
+    checkbox.addEventListener('change', () => {
+      update(listArr[index]);
+      storeTodosLocally();
+    });
+  });
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  const oldTodos = JSON.parse(localStorage.getItem('toDos'));
-  if (oldTodos) {
-    toDos = oldTodos;
+  const oldlistArr = JSON.parse(localStorage.getItem('listArr'));
+  if (oldlistArr) {
+    listArr = oldlistArr;
   }
-  displayTodos();
+  displaylistArr();
   addEventsToCheckboxes();
 });
