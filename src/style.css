@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100&display=swap");
 
 /* CSS Reset */
-/* Box sizing rules */
 *,
 *::before,
 *::after {
@@ -70,7 +69,7 @@ select {
 ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 10px;
 }
 
 #completed-list {
@@ -108,11 +107,17 @@ input[type='text'] {
   padding: 5px;
   color: black;
   font-size: 26px;
+  margin: 5px;
+  padding: 5px;
 }
 
 .items span {
   color: rgb(28, 40, 51);
   font-size: 20px;
-  font-weight: 900;
+  font-weight: 800;
   padding: 10px;
+}
+
+.margin-left {
+  margin-left: 20px;
 }
