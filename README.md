@@ -2,7 +2,7 @@
 
 # To Do List
 
-> In this project, I build a simple HTML list of To Do tasks. The list will be styled and will be built using webpack and served by a webpack dev server.
+In this project, I build a simple HTML list of To Do tasks. The list will be styled and will be built using webpack and served by a webpack dev server.
 
 ![screenshot](./list.png)
 
