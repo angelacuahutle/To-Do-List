@@ -32,10 +32,11 @@ index: [number].
 - Write a function to iterate over the tasks array and populate an HTML list item element for each task.
 - On page load render the dynamically created list of tasks in the dedicated placeholder. The list should apear in order of the index values for each task.
 - Create a style.css and set rules for the To Do List. CSS must be loaded by Webpack Style/CSS Loader.
+- Run the following commands to turn the server on: npm start 
 
 ### Prerequisites
 
-### Setup Webpack
+## Setup Webpack
 
 
 ## Authors
