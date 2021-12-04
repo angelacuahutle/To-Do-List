@@ -1,22 +1,24 @@
-function createItem() {
-
+function createItem(todoItem, todoList) {
+  todoList.push(todoItem);
 }
 
-function addItem() {
-
+function updateItemStatus(newTodo, oldTodo) {
+  oldTodo = newTodo;
+  return oldTodo;
 }
 
-function updateItemStatus() {
-
+function destroyTodo(todo, todoList) {
+  const index = todoList.indexOf(todo);
+  todoList.splice(index, 1);
+  todoList.forEach((todo, currentIndex) => {
+    if (currentIndex >= index) {
+      todo.index -= 1;
+    }
+  });
 }
 
-function removeItem() {
-
-}
-
-export {,
-  createItem
-  addItem,
+export {
+  createItem,
+  destroyTodo,
   updateItemStatus,
-  removeItem
 };
