@@ -88,7 +88,7 @@ function changeCompletedItem(index) {
   storeTodosLocally();
   if (listArr[index].completed) {
     const completedElement = ReplaceTodoItemForCompletedTask(listArr[index]);
-    const todoElements = document.querySelectorAll('itemElement-item');
+    const todoElements = document.querySelectorAll('.todo-element');
     todoElements[index].innerHTML = completedElement;
   }
 }
@@ -148,8 +148,8 @@ function addEventsToEditIcons() {
           const todo = listArr[index];
           todo.description = input.value;
           updateItemStatus(todo, listArr[index]);
-          const edit = ReplaceItemTodo(todo);
-          div.innerHTML = edit;
+          const html = ReplaceItemTodo(todo);
+          div.innerHTML = html;
           addEventsToEditIcons();
           storeTodosLocally();
           div.style.backgroundColor = 'white';
