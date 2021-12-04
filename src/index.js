@@ -3,7 +3,39 @@ import 'bootstrap/dist/css/bootstrap.css';
 import update from './track';
 import { addItem, updateItemStatus, removeItem } from './ItemsDriver';
 
-const button = document.querySelector('button');
+
+
+function createItem(itemElement) {
+  const li = document.createElement('li');
+  li.innerHTML = `
+    <div class="flex">
+      <div>
+          <input type="checkbox" class="checkbox"
+          ${itemElement.completed ? 'checked' : ''}>
+          <span>${itemElement.duties}</span>
+      </div>
+      <span class="material-icons edit-icon" style="cursor: pointer">
+          more_vert
+      </span>
+    </div>
+    <hr>`;
+  return li;
+}
+
+function addItem(itemElement) {
+  const li = createItem(itemElement);
+  button.parentElement.insertBefore(li, button);
+}
+
+function itemElement() {
+  listArr.sort((a, b) => (a.index > b.index ? 1 : -1));
+  listArr.forEach((itemElement) => {
+    addItem(itemElement);
+  });
+}
+
+
+/////////////////////////
 
 class List {
   constructor(description, completed, index) {
@@ -14,6 +46,8 @@ class List {
 }
 
 let listArr = [];
+
+function 
 
 function displaylistArr() {
   listArr.sort((a, b) => (a.index > b.index ? 1 : -1));
