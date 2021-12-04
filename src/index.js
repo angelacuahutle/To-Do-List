@@ -1,11 +1,21 @@
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import update from './track';
-import { addItem, updateItemStatus, removeItem } from './ItemsDriver';
+import { createItem, updateItemStatus, removeItem } from './ItemsDriver';
 
+const button = document.querySelector('button');
 
+class List {
+  constructor(description, completed, index) {
+    this.description = description;
+    this.completed = completed;
+    this.index = index;
+  }
+}
 
-function createItem(itemElement) {
+let listArr = [];
+
+function createItemTodo(itemElement) {
   const li = document.createElement('li');
   li.innerHTML = `
     <div class="flex">
@@ -22,32 +32,55 @@ function createItem(itemElement) {
   return li;
 }
 
-function addItem(itemElement) {
-  const li = createItem(itemElement);
+function ReplaceItemTodo(itemElement) {
+  const html = `
+    <div>
+      <input type="checkbox" class="checkbox" 
+      ${itemElement.completed ? 'checked' : ''}>
+      <span>${itemElement.duties}</span>
+    </div>
+    <span class="material-icons edit-icon" style=" cursor: pointer">
+        more_vert
+    </span>
+      `;
+  return html;
+}
+
+function addItemTodo(itemElement) {
+  const li = createItemTodo(itemElement);
   button.parentElement.insertBefore(li, button);
 }
 
 function itemElement() {
-  listArr.sort((a, b) => (a.index > b.index ? 1 : -1));
-  listArr.forEach((itemElement) => {
-    addItem(itemElement);
+  List.sort((a, b) => (a.index > b.index ? 1 : -1));
+  List.forEach((itemElement) => {
+    addItemTodo(itemElement);
   });
 }
 
+function storeTodosLocally() {
+  localStorage.setItem('listArr', JSON.stringify(List));
+}
+
+function ReplaceTodoItemForCompletedTask(itemElement) {
+  const html = `
+  
+  <div>
+  <span class="material-icons edit-icon" style=" cursor: pointer; color: green">
+      done
+  </span>
+    <strike><span>${itemElement.duties}</span></strike>
+  </div>
+  <span class="material-icons edit-icon" style=" cursor: pointer">
+      more_vert
+  </span>
+    `;
+
+  return html;
+}
 
 /////////////////////////
 
-class List {
-  constructor(description, completed, index) {
-    this.description = description;
-    this.completed = completed;
-    this.index = index;
-  }
-}
-
-let listArr = [];
-
-function 
 
 function displaylistArr() {
   listArr.sort((a, b) => (a.index > b.index ? 1 : -1));
@@ -69,9 +102,6 @@ function displaylistArr() {
   });
 }
 
-function storeTodosLocally() {
-  localStorage.setItem('listArr', JSON.stringify(listArr));
-}
 
 function addEventsToCheckboxes() {
   const checkboxes = document.querySelectorAll('.checkbox');
