@@ -7,7 +7,7 @@ function updateItemStatus(newTodo, oldTodo) {
   return oldTodo;
 }
 
-function destroyTodo(todo, todoList) {
+function removeItem(todo, todoList) {
   const index = todoList.indexOf(todo);
   todoList.splice(index, 1);
   todoList.forEach((todo, currentIndex) => {
@@ -19,6 +19,6 @@ function destroyTodo(todo, todoList) {
 
 export {
   createItem,
-  destroyTodo,
+  removeItem,
   updateItemStatus,
 };

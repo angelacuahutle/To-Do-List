@@ -85,7 +85,7 @@ function ReplaceTodoItemForCompletedTask(itemElement) {
 
 function changeCompletedItem(index) {
   update(listArr[index]);
-  saveTodosLocally();
+  storeTodosLocally();
   if (listArr[index].completed) {
     const completedElement = ReplaceTodoItemForCompletedTask(listArr[index]);
     const todoElements = document.querySelectorAll('itemElement-item');
@@ -151,16 +151,16 @@ function addEventsToEditIcons() {
           const html = ReplaceItemTodo(itemElement);
           div.innerHTML = html;
           addEventsToEditIcons();
-          saveTodosLocally();
+          storeTodosLocally();
           div.style.backgroundColor = 'white';
         }
       });
 
       span.addEventListener('click', () => {
-        saveTodosLocally();
-        destroyTodo(itemElement, listArr);
+        storeTodosLocally();
+        removeItem(itemElement, listArr);
         div.parentElement.remove();
-        saveTodosLocally();
+        storeTodosLocally();
       });
     });
   });
@@ -175,4 +175,38 @@ window.addEventListener('load', () => {
   itemElement();
   addEventsToCheckboxes();
   addEventsToEditIcons();
+});
+
+function addEventListenerToInput() {
+  const input = document.querySelector('#input-add');
+  input.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') {
+      const itemElement = new List(input.value, false, listArr.length + 1);
+      createItem(itemElement, listArr);
+      addItemTodo(itemElement);
+      storeTodosLocally();
+      input.value = '';
+      addEventsToEditIcons(listArr.length);
+      addEventsToCheckboxes(listArr.length - 1);
+    }
+  });
+}
+
+addEventListenerToInput();
+
+button.addEventListener('click', () => {
+  const todoElements = document.querySelectorAll('.todo-element');
+  const removedTodos = [];
+  for (let i = 0; i < listArr.length; i += 1) {
+    if (listArr[i].completed === true) {
+      removedTodos.push(listArr[i]);
+      todoElements[i].parentNode.remove();
+    }
+  }
+
+  removedTodos.forEach((itemElement) => {
+    removeItem(itemElement, listArr);
+  });
+
+  storeTodosLocally();
 });
