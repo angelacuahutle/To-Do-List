@@ -16,7 +16,7 @@ Additional description about the project and its features.
 
 ## Live Demo
 
-[Live Demo Link](https://livedemo.com)
+[Live Demo Link](https://angelacuahutle.github.io/To-Do-List/dist)
 
 
 ## Getting Started
@@ -59,7 +59,7 @@ it will contain methods related to the status updates (completed: true / false).
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
+Feel free to check the [issues page](https://github.com/angelacuahutle/To-Do-List/issues).
 
 ## Show your support
 
