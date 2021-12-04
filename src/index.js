@@ -56,8 +56,8 @@ function addItemTodo(itemElement) {
 }
 
 function itemElement() {
-  List.sort((a, b) => (a.index > b.index ? 1 : -1));
-  List.forEach((itemElement) => {
+  listArr.sort((a, b) => (a.index > b.index ? 1 : -1));
+  listArr.forEach((itemElement) => {
     addItemTodo(itemElement);
   });
 }
@@ -84,10 +84,10 @@ function ReplaceTodoItemForCompletedTask(itemElement) {
 }
 
 function changeCompletedItem(index) {
-  update(List[index]);
+  update(listArr[index]);
   saveTodosLocally();
-  if (List[index].completed) {
-    const completedElement = ReplaceTodoItemForCompletedTask(List[index]);
+  if (listArr[index].completed) {
+    const completedElement = ReplaceTodoItemForCompletedTask(listArr[index]);
     const todoElements = document.querySelectorAll('itemElement-item');
     todoElements[index].innerHTML = completedElement;
   }
@@ -114,7 +114,7 @@ function addEventsToEditIcons() {
   const editIcons = document.querySelectorAll('.edit-icon');
   const todoElements = document.querySelectorAll('todo-element');
 
-  List.forEach((itemElement, index) => {
+  listArr.forEach((itemElement, index) => {
     editIcons[index].addEventListener('click', () => {
       const div = document.createElement('div');
       div.classList.add('flex', 'todo-element');
@@ -145,9 +145,9 @@ function addEventsToEditIcons() {
 
       input.addEventListener('keyup', (e) => {
         if (e.key === 'Enter') {
-          const itemElement = List[index];
+          const itemElement = listArr[index];
           itemElement.duties = input.value;
-          updateItemStatus(itemElement, List[index]);
+          updateItemStatus(itemElement, listArr[index]);
           const html = ReplaceItemTodo(itemElement);
           div.innerHTML = html;
           addEventsToEditIcons();
@@ -156,35 +156,23 @@ function addEventsToEditIcons() {
         }
       });
 
-
-/////////////////////////
-
-
-function displaylistArr() {
-  listArr.sort((a, b) => (a.index > b.index ? 1 : -1));
-  listArr.forEach((itemElement) => {
-    const li = document.createElement('li');
-    li.innerHTML = `
-      <div class="flex">
-        <div>
-        <input type="checkbox" class="checkbox"
-        ${itemElement.completed ? 'checked' : ''}>
-          <span>${itemElement.duties}</span>
-        </div>
-        <span class="material-icons">
-            more_vert
-        </span>
-      </div>
-      <hr>`;
-    button.parentElement.insertBefore(li, button);
+      span.addEventListener('click', () => {
+        saveTodosLocally();
+        destroyTodo(itemElement, listArr);
+        div.parentElement.remove();
+        saveTodosLocally();
+      });
+    });
   });
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  const oldlistArr = JSON.parse(localStorage.getItem('listArr'));
+window.addEventListener('load', () => {
+  const oldlistArr = JSON.parse(localStorage.getItem('todos'));
   if (oldlistArr) {
     listArr = oldlistArr;
   }
-  displaylistArr();
+
+  itemElement();
   addEventsToCheckboxes();
+  addEventsToEditIcons();
 });
