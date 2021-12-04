@@ -4,7 +4,7 @@ import update from './track';
 import {
   createItem,
   updateItemStatus,
-  removeItem
+  removeItem,
 } from './ItemsDriver';
 
 const button = document.querySelector('button');
@@ -26,7 +26,7 @@ function createItemTodo(itemElement) {
       <div>
           <input type="checkbox" class="checkbox"
           ${itemElement.completed ? 'checked' : ''}>
-          <span>${itemElement.duties}</span>
+          <span>${itemElement.description}</span>
       </div>
       <span class="material-icons edit-icon" style="cursor: pointer">
           more_vert
@@ -41,9 +41,9 @@ function ReplaceItemTodo(itemElement) {
     <div>
       <input type="checkbox" class="checkbox" 
       ${itemElement.completed ? 'checked' : ''}>
-      <span>${itemElement.duties}</span>
+      <span>${itemElement.description}</span>
     </div>
-    <span class="material-icons edit-icon" style=" cursor: pointer">
+    <span class="material-icons edit-icon" style="cursor: pointer">
         more_vert
     </span>
       `;
@@ -63,19 +63,19 @@ function itemElement() {
 }
 
 function storeTodosLocally() {
-  localStorage.setItem('listArr', JSON.stringify(List));
+  localStorage.setItem('todo', JSON.stringify(listArr));
 }
 
 function ReplaceTodoItemForCompletedTask(itemElement) {
   const html = `
   
   <div>
-  <span class="material-icons edit-icon" style=" cursor: pointer; color: green">
+  <span class="material-icons edit-icon" style="cursor: pointer; color: green">
       done
   </span>
-    <strike><span>${itemElement.duties}</span></strike>
+    <strike><span>${itemElement.description}</span></strike>
   </div>
-  <span class="material-icons edit-icon" style=" cursor: pointer">
+  <span class="material-icons edit-icon" style= "cursor: pointer">
       more_vert
   </span>
     `;
@@ -93,18 +93,18 @@ function changeCompletedItem(index) {
   }
 }
 
-function addEventsToCheckboxes() {
+function addEventsToCheckboxes(recievedIndex) {
   const checkboxes = document.querySelectorAll('.checkbox');
   checkboxes.forEach((checkbox, index) => {
     if (recievedIndex) {
       if (recievedIndex === index) {
         checkbox.addEventListener('change', () => {
-          changeElementToCompleted(index);
+          changeCompletedItem(index);
         });
       }
     } else {
       checkbox.addEventListener('change', () => {
-        changeElementToCompleted(index);
+        changeCompletedItem(index);
       });
     }
   });
@@ -112,9 +112,9 @@ function addEventsToCheckboxes() {
 
 function addEventsToEditIcons() {
   const editIcons = document.querySelectorAll('.edit-icon');
-  const todoElements = document.querySelectorAll('todo-element');
+  const todoElements = document.querySelectorAll('.todo-element');
 
-  listArr.forEach((itemElement, index) => {
+  listArr.forEach((todo, index) => {
     editIcons[index].addEventListener('click', () => {
       const div = document.createElement('div');
       div.classList.add('flex', 'todo-element');
@@ -123,12 +123,12 @@ function addEventsToEditIcons() {
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
       checkbox.classList.add('checkbox');
-      checkbox.checked = itemElement.completed;
+      checkbox.checked = todo.completed;
 
       const input = document.createElement('input');
       input.type = 'text';
       input.classList.add('edit-input');
-      input.value = itemElement.duties;
+      input.value = todo.description;
       input.style.backgroundColor = 'transparent';
 
       const span = document.createElement('span');
@@ -141,15 +141,15 @@ function addEventsToEditIcons() {
       div.appendChild(input);
       div.appendChild(span);
 
-      todoElements[index].replaceWith(div)
+      todoElements[index].replaceWith(div);
 
       input.addEventListener('keyup', (e) => {
         if (e.key === 'Enter') {
-          const itemElement = listArr[index];
-          itemElement.duties = input.value;
-          updateItemStatus(itemElement, listArr[index]);
-          const html = ReplaceItemTodo(itemElement);
-          div.innerHTML = html;
+          const todo = listArr[index];
+          todo.description = input.value;
+          updateItemStatus(todo, listArr[index]);
+          const edit = ReplaceItemTodo(todo);
+          div.innerHTML = edit;
           addEventsToEditIcons();
           storeTodosLocally();
           div.style.backgroundColor = 'white';
@@ -158,7 +158,7 @@ function addEventsToEditIcons() {
 
       span.addEventListener('click', () => {
         storeTodosLocally();
-        removeItem(itemElement, listArr);
+        removeItem(todo, listArr);
         div.parentElement.remove();
         storeTodosLocally();
       });
@@ -167,7 +167,7 @@ function addEventsToEditIcons() {
 }
 
 window.addEventListener('load', () => {
-  const oldlistArr = JSON.parse(localStorage.getItem('todos'));
+  const oldlistArr = JSON.parse(localStorage.getItem('todo'));
   if (oldlistArr) {
     listArr = oldlistArr;
   }
@@ -178,7 +178,7 @@ window.addEventListener('load', () => {
 });
 
 function addEventListenerToInput() {
-  const input = document.querySelector('#input-add');
+  const input = document.querySelector('#input');
   input.addEventListener('keyup', (e) => {
     if (e.key === 'Enter') {
       const itemElement = new List(input.value, false, listArr.length + 1);
